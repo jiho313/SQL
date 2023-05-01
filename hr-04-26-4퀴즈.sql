@@ -88,12 +88,12 @@ and l.country_id = c.country_id(+)
 group by c.country_name;
 
 -- 부서별 평균급여를 계산했을 때 전체직원의 평균급여보다 평균급여가 높은 부서의 아이디와 평균급여를 조회하기
-select e.department_id, e.avg_salary
+select department_id, trunc(avg_salary)
 from (select department_id, avg(salary) avg_salary
         from employees
-        group by department_id) e
-where e.department_id is not null 
-and e.avg_salary > (select avg(salary)
+        group by department_id)
+where department_id is not null 
+and avg_salary > (select avg(salary)
                       from employees);
                       
 select department_id, trunc(avg(salary))
