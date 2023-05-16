@@ -107,8 +107,8 @@ having avg(salary) > (select avg(salary)
 -- 사원 테이블의 급여를 기준으로 급여 등급을 조회했을 때, 급여등급별 사원수를 조회하기
 select g.grade, count(*)
 from (select g.grade
-from employees e, salary_grades g
-where e.salary >= g.min_salary and e.salary <= g.max_salary) g
+      from employees e, salary_grades g
+      where e.salary >= g.min_salary and e.salary <= g.max_salary) g
 group by g.grade;
 
 select y.grade, nvl(x.cnt, 0)cnt, y.min_salary, y.max_salary
